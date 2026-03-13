@@ -15,8 +15,7 @@ database/*.db-shm
 database/*.db-wal
 
 # User Uploads
-assets/uploads/*
-!assets/uploads/.gitkeep
+assets/user-uploads/
 
 # environment and secrets for admin keys
 .env
