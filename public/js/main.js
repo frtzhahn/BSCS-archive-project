@@ -12,6 +12,15 @@
 
   // --- Phase 9: Cinematic Loader & Route Init ---
   document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("navbar");
+    const navLinks = document.querySelector(".navbar-links");
+    if (nav && navLinks) {
+      const menuBtn = document.createElement("button");
+      menuBtn.className = "mobile-menu-btn";
+      menuBtn.innerText = "[ MENU ]";
+      menuBtn.onclick = () => navLinks.classList.toggle("active");
+      nav.insertBefore(menuBtn, navLinks);
+    }
     const page = window.location.pathname;
     let themeClass = "loader-home";
     if (page === "/moments.html") themeClass = "loader-gallery";
