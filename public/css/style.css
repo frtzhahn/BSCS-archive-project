@@ -519,15 +519,73 @@ body::before {
 
 .pending-card-actions {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   gap: 0.5rem;
   margin-top: 0.85rem;
   padding-bottom: 1rem;
 }
 
-.pending-card-actions .btn {
+.pending-card-actions .btn-approve,
+.pending-card-actions .btn-reject {
   flex: 1;
-  font-size: 0.75rem;
-  padding: 0.55rem 0.5rem;
+  padding: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: var(--transition);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.pending-card-actions .btn-approve {
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid #4ade80;
+  color: #4ade80;
+}
+.pending-card-actions .btn-approve:hover:not(:disabled) {
+  background: #4ade80;
+  color: #000;
+}
+
+.pending-card-actions .btn-reject {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid var(--accent-red);
+  color: var(--accent-red);
+}
+.pending-card-actions .btn-reject:hover:not(:disabled) {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+.pending-card-actions .btn-approve:disabled,
+.pending-card-actions .btn-reject:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-review {
+  width: 100%;
+  margin-top: 5px;
+  background: transparent;
+  border: 1px solid #b8bb26;
+  color: #b8bb26;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 8px;
+  text-transform: uppercase;
+  transition: var(--transition);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.btn-review:hover:not(:disabled) {
+  background: #b8bb26;
+  color: var(--bg);
 }
 
 .pending-empty {

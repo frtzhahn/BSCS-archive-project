@@ -435,7 +435,7 @@
       uploaderInfo.textContent = "> UPLOADED_BY: " + (data.uploaderName || 'ANONYMOUS');
 
       var actions = document.createElement("div");
-      actions.className = "action-btns";
+      actions.className = "pending-card-actions";
 
       var approveBtn = document.createElement("button");
       approveBtn.className = "btn-approve";
@@ -444,6 +444,10 @@
       var rejectBtn = document.createElement("button");
       rejectBtn.className = "btn-reject";
       rejectBtn.textContent = "REJECT";
+      
+      var reviewBtn = document.createElement("button");
+      reviewBtn.className = "btn-review";
+      reviewBtn.textContent = "[REVIEW]";
 
       // fire authorization hook
       approveBtn.addEventListener("click", async function () {
@@ -505,8 +509,23 @@
         }
       });
 
+      // bind review hook
+      reviewBtn.addEventListener("click", function () {
+        document.getElementById("edit-id").value = data.id;
+        document.getElementById("edit-title").value = parsed.title;
+        document.getElementById("edit-date").value = parsed.date;
+        document.getElementById("edit-alias").value = parsed.alias || "ANONYMOUS";
+        document.getElementById("edit-desc").value = parsed.desc;
+        editModal.classList.add("is-open");
+        let mContent = editModal.querySelector(".modal-content");
+        if (mContent) {
+          setTimeout(() => mContent.classList.add("zoom-active"), 10);
+        }
+      });
+
       actions.appendChild(approveBtn);
       actions.appendChild(rejectBtn);
+      actions.appendChild(reviewBtn);
 
       card.appendChild(img);
       card.appendChild(desc);
@@ -660,7 +679,11 @@
           if (mContent) mContent.classList.remove("zoom-active");
           setTimeout(() => {
             editModal.classList.remove("is-open");
-            fetchActive(); // swap views
+            if (btnViewPending && btnViewPending.classList.contains("active")) {
+              fetchPending();
+            } else {
+              fetchActive();
+            }
           }, 300);
         } catch(e) {
           console.error(e);
