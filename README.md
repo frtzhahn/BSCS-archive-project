@@ -110,3 +110,13 @@ node server.js
 >`ADMIN_USERNAME=prefered_admin_username`
 >`ADMIN_PASSWORD=prefered_admin_password`
 >restart the server after the admin credentials update
+
+---
+
+
+# Project preview
+
+
+![Image](https://github.com/user-attachments/assets/1778a68b-17cb-4936-87c3-ed9a3ba34a47)
+
+
